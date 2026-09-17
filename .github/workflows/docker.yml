@@ -1,4 +1,4 @@
-name: Docker Build
+name: ATM CI
 
 on:
   push:
@@ -9,12 +9,23 @@ on:
       - main
 
 jobs:
-  docker-build:
+  test-and-build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run test cases
+        run: pytest
 
       - name: Build Docker image
         run: docker build -t atm-app .
