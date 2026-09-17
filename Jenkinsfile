@@ -11,13 +11,13 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'python -m pytest'
+                bat '"C:\\Users\\ELCOT\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pytest'
             }
         }
 
         stage('Run Application') {
             steps {
-                bat 'python ATM.py'
+                bat '"C:\\Users\\ELCOT\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" ATM.py'
             }
         }
     }
