@@ -9,21 +9,15 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build Docker Image') {
             steps {
-                bat 'python -m pip install pytest'
+                bat 'docker build -t atm-app .'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'python -m pytest'
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                bat 'docker build -t atm-app .'
+                bat 'docker run --rm atm-app python -m pytest'
             }
         }
 
