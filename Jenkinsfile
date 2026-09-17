@@ -9,27 +9,15 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                bat 'docker build -t atm-app .'
-            }
-        }
-
         stage('Run Tests') {
             steps {
-                bat 'docker run --rm atm-app python -m pytest'
+                bat 'python -m pytest'
             }
         }
 
-        stage('Remove Old Container') {
+        stage('Run Application') {
             steps {
-                bat 'docker rm -f atm-app-container 2>nul || exit 0'
-            }
-        }
-
-        stage('Run Docker Container') {
-            steps {
-                bat 'docker run --name atm-app-container atm-app'
+                bat 'python ATM.py'
             }
         }
     }
