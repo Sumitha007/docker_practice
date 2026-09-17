@@ -8,7 +8,7 @@ while True:
     print("3. Withdraw")
     print("4. Exit")
 
-    choice = input("Enter your choice: ")
+    choice =1 
 
     if choice == "1":
         print("Balance:", balance)
